@@ -9,6 +9,23 @@ const MovieInfo = () => {
   const [info, setInfo] = useState([]);
   let { id } = useParams();
 
+  const [favorites, setFavorites] = useState([])
+
+
+
+////////////////////////////////
+
+const addToFavList = (element) => {
+  let favList;
+  localStorage.getItem("favList")
+     favList = JSON.parse(localStorage.getItem("favList")) || [];
+  favList.push(element);
+  localStorage.setItem("favList", JSON.stringify(favList));
+};
+
+
+
+
   ////////////////////////////////
   //getMoviebyId
   const getMoviebyId = () => {
@@ -36,8 +53,9 @@ const MovieInfo = () => {
         <p> {info.overview}</p>
         <p> Release Date : {info.release_date}</p>
         <p>Rate: {info.vote_average}</p>
+        <button onClick={  addToFavList(info)}  >add To favorites</button>
       </div>
-      <h1>movie</h1>
+  
       <div className="clickDiv">
         <button
           onClick={() => {
