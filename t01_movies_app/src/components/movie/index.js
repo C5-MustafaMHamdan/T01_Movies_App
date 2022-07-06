@@ -53,7 +53,7 @@ const addToFavList = (element) => {
         <p> {info.overview}</p>
         <p> Release Date : {info.release_date}</p>
         <p>Rate: {info.vote_average}</p>
-        <button onClick={  addToFavList(info)}  >add To favorites</button>
+        <button onClick={()=>{addToFavList(info)}  }  >add To favorites</button>
       </div>
   
       <div className="clickDiv">

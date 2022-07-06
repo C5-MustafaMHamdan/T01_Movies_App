@@ -46,7 +46,7 @@ function Home() {
                   src={`https://image.tmdb.org/t/p/w370_and_h556_bestv2/${element.poster_path}`}
                 />
 
-                <p
+                <p className="detail"
                   onClick={() => {
                     movieDetails(element);
                   }}
