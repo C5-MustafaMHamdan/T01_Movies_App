@@ -64,7 +64,7 @@ function Home() {
   }, []);
 
   return (
-    <div className="App">
+    <div className="Home">
       <div className="movies">
         {movie &&
           movie.map((element, index) => {
@@ -86,7 +86,8 @@ function Home() {
             {element.original_title}
           </Card.Title>
           <Card.Text>
-          {element.overview}
+          {element.overview.substring(0,250)
+}
           </Card.Text>
 
           <Card.Text>

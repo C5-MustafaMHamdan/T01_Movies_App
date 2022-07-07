@@ -25,7 +25,17 @@ const addToFavList = (element) => {
 };
 
 
+const checkFav =()=>{
 
+  const store = JSON.parse(localStorage.getItem("favList")) || [];
+  const store2 = store.map((element) => {
+    return element.id;
+  });
+  return store2;
+
+
+
+}
 
   ////////////////////////////////
   //getMoviebyId
@@ -45,6 +55,7 @@ const addToFavList = (element) => {
   };
   useEffect(() => {
     getMoviebyId();
+    checkFav()
   }, []);
 
   return (
@@ -55,7 +66,7 @@ const addToFavList = (element) => {
         <p> Release Date : {info.release_date}</p>
         <p>Rate: {info.vote_average}</p>
          
-        <Fav    addToFavList={addToFavList} info= {info}   />
+        <Fav    addToFavList={addToFavList} info= {info}  checkFav={checkFav} />
       </div>
 
 

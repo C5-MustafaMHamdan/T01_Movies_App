@@ -6,7 +6,7 @@ cursor: pointer;
 
 .movies{
 display: grid;
-grid-template-columns:  1fr  1fr;
+grid-template-columns:  auto  auto auto;
  align-items: center;
 text-align: center;
  align-content: center;
