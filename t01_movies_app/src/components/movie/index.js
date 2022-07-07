@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./style.css";
 import { useNavigate } from "react-router-dom";
+import Fav from "../favModel";
 
 const MovieInfo = () => {
   const navigate = useNavigate();
@@ -53,13 +54,15 @@ const addToFavList = (element) => {
         <p> {info.overview}</p>
         <p> Release Date : {info.release_date}</p>
         <p>Rate: {info.vote_average}</p>
-        <button onClick={()=>{addToFavList(info)}  }  >add To favorites</button>
+         
+        <Fav    addToFavList={addToFavList} info= {info}   />
       </div>
-  
+
+
       <div className="clickDiv">
         <button
           onClick={() => {
-            navigate(-1);
+            navigate("/");
           }}
         >
           Back

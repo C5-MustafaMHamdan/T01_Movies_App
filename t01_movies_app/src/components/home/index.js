@@ -14,6 +14,8 @@ function Home() {
   };
 
   const [movie, setMovie] = useState("");
+  const [load ,setLoad]=useState("");
+  const[ page ,setPage]=useState(1);
 
   const getMovie = () => {
     axios
@@ -30,9 +32,41 @@ function Home() {
         throw err;
       });
   };
+
+///////////////////////////////
+
+  const getMore = async() => {
+    setPage(page + 1);
+     
+    await axios
+      .get(
+        `https://api.themoviedb.org/3/movie/popular?api_key=1bfa430aada4409bfa6a3c5528128e8a&page=${page+1}`
+      )
+
+      .then((response) => {
+        console.log(response.data.results);
+        setLoad(response.data.results);
+        setMovie([...movie,...response.data.results])
+      })
+
+      .catch((err) => {
+        throw err;
+      });
+  };
+
+
+
+
+
   useEffect(() => {
-    getMovie();
+    if (movie.length===0)
+  {  getMovie();}
+   
   }, []);
+
+
+ 
+
 
   return (
     <div className="App">
@@ -61,6 +95,9 @@ function Home() {
             );
           })}
       </div>
+      <button  onClick={() => {
+                    getMore();
+                  }}>Load More</button>
     </div>
   );
 }
