@@ -4,18 +4,19 @@ import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./style.css";
 
+import { Button, Card } from "react-bootstrap";
 function Home() {
   const navigate = useNavigate();
 
   const movieDetails = (element) => {
     console.log(element);
 
-    navigate(`/details/${element.id}`) 
+    navigate(`/details/${element.id}`);
   };
 
   const [movie, setMovie] = useState("");
-  const [load ,setLoad]=useState("");
-  const[ page ,setPage]=useState(1);
+  const [load, setLoad] = useState("");
+  const [page, setPage] = useState(1);
 
   const getMovie = () => {
     axios
@@ -33,20 +34,22 @@ function Home() {
       });
   };
 
-///////////////////////////////
+  ///////////////////////////////
 
-  const getMore = async() => {
+  const getMore = async () => {
     setPage(page + 1);
-     
+
     await axios
       .get(
-        `https://api.themoviedb.org/3/movie/popular?api_key=1bfa430aada4409bfa6a3c5528128e8a&page=${page+1}`
+        `https://api.themoviedb.org/3/movie/popular?api_key=1bfa430aada4409bfa6a3c5528128e8a&page=${
+          page + 1
+        }`
       )
 
       .then((response) => {
         console.log(response.data.results);
         setLoad(response.data.results);
-        setMovie([...movie,...response.data.results])
+        setMovie([...movie, ...response.data.results]);
       })
 
       .catch((err) => {
@@ -54,50 +57,57 @@ function Home() {
       });
   };
 
-
-
-
-
   useEffect(() => {
-    if (movie.length===0)
-  {  getMovie();}
-   
+    if (movie.length === 0) {
+      getMovie();
+    }
   }, []);
-
-
- 
-
 
   return (
     <div className="App">
-     
       <div className="movies">
         {movie &&
           movie.map((element, index) => {
             return (
               <div key={index}>
-                <img
-                  src={`https://image.tmdb.org/t/p/w370_and_h556_bestv2/${element.poster_path}`}
-                />
+               <Card  style={{ width: '18rem' }}>
+        <Card.Img
+          variant="top"
+          src={`https://image.tmdb.org/t/p/w370_and_h556_bestv2/${element.poster_path}`}
+        />
+        <Card.Body>
+          <Card.Title
+            className="detail"
+            onClick={() => {
+              movieDetails(element);
+            }}
+          >
+            {" "}
+            {element.original_title}
+          </Card.Title>
+          <Card.Text>
+          {element.overview}
+          </Card.Text>
 
-                <p className="detail"
-                  onClick={() => {
-                    movieDetails(element);
-                  }}
-                >
-                
-                  {element.original_title}
-                </p>
-                <p> {element.overview}</p>
-                <p> Release Date : {element.release_date}</p>
-                <p>Rate: {element.vote_average}</p>
+          <Card.Text>
+          Rate: {element.vote_average}
+          </Card.Text>
+ 
+        </Card.Body>
+      </Card>
               </div>
             );
           })}
       </div>
-      <button  onClick={() => {
-                    getMore();
-                  }}>Load More</button>
+      <button
+        onClick={() => {
+          getMore();
+        }}
+      >
+        Load More
+      </button>
+
+    
     </div>
   );
 }

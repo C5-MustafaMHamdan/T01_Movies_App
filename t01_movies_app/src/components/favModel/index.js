@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Button, Modal } from "react-bootstrap";
+
 import "./style.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Button, Modal } from "react-bootstrap";
 const Fav = (props) => {
   const { addToFavList, info } = props;
 
@@ -18,12 +19,12 @@ const Fav = (props) => {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>fav</Modal.Title>
+          <Modal.Title>Add Movie To Favorites</Modal.Title>
         </Modal.Header>
-        <Modal.Body>want to add the movie</Modal.Body>
+        <Modal.Body>Do you want to add This Movie to favorites list?</Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
-            Close
+            No
           </Button>
           <Button
             variant="primary"
@@ -32,7 +33,7 @@ const Fav = (props) => {
               handleClose();
             }}
           >
-            Save Changes
+            Yes
           </Button>
         </Modal.Footer>
       </Modal>
