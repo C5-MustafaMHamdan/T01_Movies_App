@@ -62,40 +62,40 @@ function Home() {
       getMovie();
     }
   }, []);
-
+  <div></div>;
   return (
     <div className="Home">
       <div className="movies">
         {movie &&
           movie.map((element, index) => {
             return (
-              <div key={index}>
-               <Card  style={{ width: '18rem' }}>
-        <Card.Img
-          variant="top"
-          src={`https://image.tmdb.org/t/p/w370_and_h556_bestv2/${element.poster_path}`}
-        />
-        <Card.Body>
-          <Card.Title
-            className="detail"
-            onClick={() => {
-              movieDetails(element);
-            }}
-          >
-            {" "}
-            {element.original_title}
-          </Card.Title>
-          <Card.Text>
-          {element.overview.substring(0,250)
-}
-          </Card.Text>
+              <div className="item" key={index}>
+                <div className="movie-image">
+                  <img className="movImg"
+                    onClick={() => {
+                      movieDetails(element);
+                    }}
+                    src={`https://image.tmdb.org/t/p/w370_and_h556_bestv2/${element.poster_path}`}
+                  />
+                </div>
 
-          <Card.Text>
-          Rate: {element.vote_average}
-          </Card.Text>
- 
-        </Card.Body>
-      </Card>
+                <div className="movie-details">
+                  <div className="header" >
+                    <p className="movie-title"
+                      onClick={() => {
+                        movieDetails(element);
+                      }}
+                    >
+                      {element.original_title}
+                    </p>
+
+                    <p> Rate: {element.vote_average}</p>
+                  </div>
+
+                  <div className="movie-description">
+                    <p className="desc"> {element.overview.substring(0, 250)}</p>
+                  </div>
+                </div>
               </div>
             );
           })}
@@ -107,8 +107,6 @@ function Home() {
       >
         Load More
       </button>
-
-    
     </div>
   );
 }
