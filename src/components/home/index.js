@@ -89,7 +89,7 @@ function Home() {
                       {element.original_title}
                     </p>
 
-                    <p> Rate: {element.vote_average}</p>
+                    <p>  {element.release_date}</p>
                   </div>
 
                   <div className="movie-description">
