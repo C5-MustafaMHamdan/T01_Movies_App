@@ -61,12 +61,11 @@
   transform: scale(1.3);
   transition: 200ms linear;
   color: #0062cc;
-}
-
-.movie-title:hover {
   cursor: pointer;
+
 }
 
+ 
 .movie-description {
   margin: 10px 0;
 }
@@ -77,6 +76,17 @@
   margin-block-end: 1em;
   margin-inline-start: 0px;
   margin-inline-end: 0px;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  text-align: justify;
+}
+
+.movie-date{
+  font-family: sans;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #000;
+ 
   margin-top: 0;
   margin-bottom: 1rem;
   text-align: justify;

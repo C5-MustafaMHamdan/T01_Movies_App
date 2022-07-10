@@ -89,12 +89,13 @@ function Home() {
                       {element.original_title}
                     </p>
 
-                    <p>  {element.release_date}</p>
+               
                   </div>
 
                   <div className="movie-description">
                     <p className="desc"> {element.overview.substring(0, 250)}</p>
                   </div>
+                  <p  className="movie-date">  {element.release_date}</p>
                 </div>
               </div>
             );
@@ -107,6 +108,7 @@ function Home() {
       >
         Load More
       </button>
+      
     </div>
   );
 }

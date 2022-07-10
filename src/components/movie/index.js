@@ -76,7 +76,14 @@ const checkFav =()=>{
             navigate("/");
           }}
         >
-          Back
+          Back To Home
+        </button>
+        <button
+          onClick={() => {
+            navigate("/favorites");
+          }}
+        >
+          Go To Favorites
         </button>
       </div>
     </div>
