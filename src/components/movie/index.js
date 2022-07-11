@@ -10,37 +10,29 @@ const MovieInfo = () => {
   const [info, setInfo] = useState([]);
   let { id } = useParams();
 
-  const [favorites, setFavorites] = useState([])
+  const [favorites, setFavorites] = useState([]);
 
+  ////////////////////////////////
 
+  const addToFavList = (element) => {
+    let favList;
+    localStorage.getItem("favList");
+    favList = JSON.parse(localStorage.getItem("favList")) || [];
+    favList.push(element);
+    localStorage.setItem("favList", JSON.stringify(favList));
+  };
 
-////////////////////////////////
-
-const addToFavList = (element) => {
-  let favList;
-  localStorage.getItem("favList")
-     favList = JSON.parse(localStorage.getItem("favList")) || [];
-  favList.push(element);
-  localStorage.setItem("favList", JSON.stringify(favList));
-};
-
-
-const checkFav =()=>{
-
-  const store = JSON.parse(localStorage.getItem("favList")) || [];
-  const store2 = store.map((element) => {
-    return element.id;
-  });
-  return store2;
-
-
-
-}
+  const checkFav = () => {
+    const store = JSON.parse(localStorage.getItem("favList")) || [];
+    const store2 = store.map((element) => {
+      return element.id;
+    });
+    return store2;
+  };
 
   ////////////////////////////////
   //getMoviebyId
   const getMoviebyId = () => {
-     
     axios
       .get(
         `https://api.themoviedb.org/3/movie/${id}?language=en-US&api_key=1bfa430aada4409bfa6a3c5528128e8a`
@@ -55,20 +47,28 @@ const checkFav =()=>{
   };
   useEffect(() => {
     getMoviebyId();
-    checkFav()
+    checkFav();
   }, []);
 
   return (
     <div className="movieInfo">
       <div>
-        <img src={`https://image.tmdb.org/t/p/w400/${info.poster_path}`} />
-        <p> {info.overview}</p>
-        <p> Release Date : {info.release_date}</p>
-        <p>Rate: {info.vote_average}</p>
-         
-        <Fav    addToFavList={addToFavList} info= {info}  checkFav={checkFav} />
-      </div>
+        <div className="img-div">
+          
+          <img
+            src={`https://image.tmdb.org/t/p/w400/${info.backdrop_path}`}
+          />
+        </div>
 
+        <div className="title_wrapper ">
+          <h1>{info.original_title}</h1>
+          <p> {info.overview}</p>
+          <p> Release Date : {info.release_date}</p>
+          <p>Rate: {info.vote_average}</p>{" "}
+        </div>
+
+        <Fav addToFavList={addToFavList} info={info} checkFav={checkFav} />
+      </div>
 
       <div className="clickDiv">
         <button
@@ -76,7 +76,7 @@ const checkFav =()=>{
             navigate("/");
           }}
         >
-          Back To Home
+          Home
         </button>
         <button
           onClick={() => {

@@ -24,7 +24,7 @@ function Navy() {
   <Navbar.Toggle aria-controls="responsive-navbar-nav" />
   <Navbar.Collapse id="responsive-navbar-nav">
     <Nav className="me-auto">
-      <Nav.Link href="/" className="Home-link">Home</Nav.Link>
+     
       <Nav.Link href="/favorites"></Nav.Link>
           </Nav>
     <Nav>
