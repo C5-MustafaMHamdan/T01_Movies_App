@@ -15,7 +15,7 @@ const Fav = (props) => {
 
     <>
     {
-checkFav().includes(info.id)? ( <div >  <p>Added</p></div>):( <> <Button variant="primary" onClick={handleShow}>
+checkFav().includes(info.id)? ( <div >  <Modal.Title className="added">Added To Favorites</Modal.Title></div>):( <> <Button variant="primary" onClick={handleShow}>
 Add to favorites
 </Button>
 

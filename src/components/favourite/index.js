@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./style.css";
 import { useNavigate } from "react-router-dom";
-
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Button } from "react-bootstrap";
 
 const Favorite = () => {
   const navigate = useNavigate();
@@ -38,30 +39,46 @@ const Favorite = () => {
   ////////////////////////////////
 
   return (
-    <div className="fav">
+    <div className="Home">
+      <div className="movies">
       {favorites &&
         favorites.map((element, index) => {
           return (
-            <div key={index}>
-              <img
+            <div className="item" key={index}>
+               
+
+               <div className="movie-image">
+              <img className="movImg"
                 src={`https://image.tmdb.org/t/p/w370_and_h556_bestv2/${element.poster_path}`}
               />
+</div>
 
-              <p className="detail">{element.original_title}</p>
-              <p> {element.overview}</p>
-              <p> Release Date : {element.release_date}</p>
-              <p>Rate: {element.vote_average}</p>
-              <button
+
+<div className="movie-details" > 
+<div className="header">
+  <p className="movie-title" >{element.original_title}</p></div>
+
+  <div className="movie-description">
+                    <p className="desc"> {element.overview }</p>
+                  </div>
+              <p className="movie-date"> Release Date : {element.release_date}</p>
+              <p className="movie-date">Rate: {element.vote_average}</p>
+              <Button variant="secondary"
                 onClick={() => {
                   removeItem(element);
                   myfav()
                 }}
+                
               >
                 Remove from Favorites
-              </button>
+              </Button>
+
+              </div>
+           
             </div>
           );
         })}
+        </div>
     </div>
   );
 };

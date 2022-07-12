@@ -63,7 +63,7 @@ function Home() {
       getMovie();
     }
   }, []);
-  <div></div>;
+ 
   return (
     <div className="Home">
       <div className="movies">

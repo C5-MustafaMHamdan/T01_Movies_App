@@ -1,0 +1,9 @@
+button.btn.btn-secondary {
+     height: 3rem;
+     width: 15rem;
+}
+
+button.btn.btn-secondary:hover {
+background-color: red;
+border: 1px solid transparent;
+}
