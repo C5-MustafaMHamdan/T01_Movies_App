@@ -4,6 +4,8 @@ import axios from "axios";
 import "./style.css";
 import { useNavigate } from "react-router-dom";
 import Fav from "../favModel";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Button, Card } from "react-bootstrap";
 
 const MovieInfo = () => {
   const navigate = useNavigate();
@@ -52,42 +54,55 @@ const MovieInfo = () => {
 
   return (
     <div className="movieInfo">
-      <div>
-        <div className="img-div">
-          
-          <img
-            src={`https://image.tmdb.org/t/p/w400/${info.backdrop_path}`}
-          />
-        </div>
-
-        <div className="title_wrapper ">
-          <h1>{info.original_title}</h1>
-          <p> {info.overview}</p>
-          <p> Release Date : {info.release_date}</p>
-          <p>Rate: {info.vote_average}</p>{" "}
-        </div>
-
-        <Fav addToFavList={addToFavList} info={info} checkFav={checkFav} />
+      <div className="movie-item">
+      <div className="img-div">
+        <img className="mov-img" src={`https://image.tmdb.org/t/p/w400/${info.backdrop_path}`} />
       </div>
 
-      <div className="clickDiv">
-        <button
-          onClick={() => {
-            navigate("/");
-          }}
-        >
-          Home
-        </button>
-        <button
-          onClick={() => {
-            navigate("/favorites");
-          }}
-        >
-          Go To Favorites
-        </button>
+      <div className="desc-title-btn">
+        <div className="title_movie ">  <h1>{info.original_title}</h1></div>
+         <div className="desc-movie">
+          <p> {info.overview}</p>
+          </div>
+
+          <div className="additional-info">
+          <p> Release Date : {info.release_date}</p>
+          <p>Rate: {info.vote_average}</p> </div>
+        
+
+        <div className="clickDiv">
+          <div>
+            <Fav addToFavList={addToFavList} info={info} checkFav={checkFav} />
+          </div>
+
+          <div>
+            <Button
+              className="home-btn"
+              onClick={() => {
+                navigate("/");
+              }}
+            >
+              Home
+            </Button>
+          </div>
+          <div>
+            <Button
+              className="addToFav-btn"
+              onClick={() => {
+                navigate("/favorites");
+              }}
+            >
+              Go To Favorites
+            </Button>
+          </div>
+        </div>
+      </div>
       </div>
     </div>
   );
 };
 
 export default MovieInfo;
+
+
+ 

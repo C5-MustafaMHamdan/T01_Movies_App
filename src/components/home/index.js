@@ -1,10 +1,11 @@
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./style.css";
 
+import "./style.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Card } from "react-bootstrap";
+
 function Home() {
   const navigate = useNavigate();
 
@@ -101,15 +102,19 @@ function Home() {
             );
           })}
       </div>
-      <button
+      <br></br>
+      <Button
+        variant="primary"
         onClick={() => {
           getMore();
         }}
       >
         Load More
-      </button>
+      </Button>
       
     </div>
   );
 }
 export default Home;
+
+ 
